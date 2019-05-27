@@ -1,0 +1,6 @@
+Lunch Location:The Granary
+Lunch Address:23, Wayang St, Kuching Town, 93000 Kuching, Sarawak
+Cuisine Type:Western
+Healthy?:No
+Halal or Non-halal:non-halal
+Price range:Expensive
