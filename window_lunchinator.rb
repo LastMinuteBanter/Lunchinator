@@ -12,6 +12,7 @@ def homeScreen(root,home_win,question,user1,final_location)
       image_placer.image = image #setting the image label with the image
       image_placer.place('height' => image.height, 'width' => image.width, 'x' => 100, 'y' => 50) #adjust the width,height and placement using x and y coordinates
 
+	  
       hometitle = TkLabel.new(home_win) #Title Label
       hometitle.font = TkFont.new('times 20 bold') #Font style is Times, 20px, and Bold
       hometitle.relief = "groove" #Create a groove effect for the border
@@ -59,6 +60,12 @@ def questions_window(root,question,user1,final_location)
 
     #The variables are put in an array to be used in the program later on
     variable_arr = [$cuisine_choice,$healthy_choice,$halal_choice,$price_choice]
+    #A label is created below to show the main instruction
+    instruction = TkLabel.new(ques_win)
+    instruction.pack('side' => 'top', 'fill' => 'x')
+    instruction.text = "For each question, pick only 1 answer!" #the main instruction
+    instruction.font = TkFont.new('times 15 bold')
+    instruction.foreground= "red"
 
     #Codes below are used to generate different questions to be asked to the user
     #Each of the questions will have the same structure as each other but the text will differ
@@ -173,7 +180,7 @@ def questions_window(root,question,user1,final_location)
     #Next, it will run the location_decider method to decide on the location based on the values saved
     #The location decider method would automatically generate the result_window later on
     generate_btn.command = (proc{save_answers(user1,variable_arr);location_decider(root,user1,final_location); ques_win.destroy()})
-    generate_btn.place('height' => 50, 'width' => 500, 'x' => 100, 'y' => 400)
+    generate_btn.place('height' => 50, 'width' => 500, 'x' => 100, 'y' => 440)
 
 end
 

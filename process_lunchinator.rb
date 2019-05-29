@@ -1,4 +1,4 @@
-#The functions below mainly consist of the functions being performed by the program
+#The functions below mainly consist of the core functionality of the program
 
 
 #This function is used to decide the location based on the user's input
@@ -6,6 +6,7 @@ def location_decider(root,user1,final_location)
 
   #The array below stores all the names of the restaurants stored in the program
   restaurants = ["Hai Nan Village Lei Cha", "Rock Road Seafood Restaurant","Go Fun Kee Bak Kut Teh (Jalan Rock 2 1/2)","Ono Poke","SUUKEE The Original Hainanese Chicken Rice @ Icom Square","Seoul Garden Vivacity Megamall","Chong Chon Green Noodles","Boulevard Restaurant","Sharing Too @ CityOne","Subway @ Plaza Merdeka","Earthlings Coffee Workshop HQ","Howdy's Grillhouse","McDonalds @ Padungan","Sukha Cafe","My Restaurant","The Granary"]
+
 
   #Below contains all the if-else function used to determine the restaurant based on the uers's input
   #The restaurant list is narrowed based on whether certain criterias are true or false
@@ -156,6 +157,7 @@ def save_answers(user1,variable_arr)
     end
   end
 
+
   #pass the value of the given variables into the user1 class variables
   user1.cuisine = variable_arr[0]
   user1.healthy = variable_arr[1]
@@ -168,13 +170,16 @@ end
 def save_to_text(final_location)
   #open the pre-determined file to write on
   location_save = open('last_saved.txt','w')
+
   #Generate the lines for the file
-  location_save.puts("Lunch Location:"+final_location.name)
-  location_save.puts("Lunch Address:"+final_location.address)
-  location_save.puts("Cuisine Type:"+final_location.cuisine)
-  location_save.puts("Healthy?:"+final_location.healthy)
-  location_save.puts("Halal or Non-halal:"+final_location.halal)
-  location_save.puts("Price range:"+final_location.price)
+	  location_save.puts("Lunch Location:"+final_location.name)
+	  location_save.puts("Lunch Address:"+final_location.address)
+	  location_save.puts("Cuisine Type:"+final_location.cuisine)
+	  location_save.puts("Healthy?:"+final_location.healthy)
+	  location_save.puts("Halal or Non-halal:"+final_location.halal)
+	  location_save.puts("Price range:"+final_location.price)
+
+
   #close the file
   location_save.close
 end
@@ -197,10 +202,12 @@ EOF
     smtp = Net::SMTP.new('smtp.gmail.com', 587 ) #intialise the SMTP gmail protocol to be used
     smtp.enable_starttls #To start the TTL
     smtp.start('gmail.com', 'lunchinatorassignment@gmail.com', 'lunchinator2019', :login) do |smtp| #After logging in,it would start to create the email and send it
-            smtp.send_message (message + "\n Location Name: " + final_location.name + "\n Location Address" + final_location.address + "\n Cuisine Type:" + final_location.cuisine + "\n Healthiness:" + final_location.healthy + "\n Halal or Non-Halal:" + final_location.halal + + "\n Price Range:" + final_location.price ) ,'lunchinatorassignment@gmail.com', user_email
+    smtp.send_message (message + "\n Location Name: " + final_location.name + "\n Location Address: " + final_location.address + "\n Cuisine Type: " + final_location.cuisine + "\n Healthy option?: " + final_location.healthy + "\n Halal or Non-Halal: " + final_location.halal + + "\n Price Range: " + final_location.price ) ,'lunchinatorassignment@gmail.com', user_email
             #The line above is used to send the email using the given message structure.
             #The sender email and user_email is defined as the last 2 values in the line.
             #lunchinatorassignment@gmail.com is the sender email and the user_email is the recipient
+
+
     smtp.finish #end the process
     end
 end
